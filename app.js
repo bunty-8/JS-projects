@@ -1,10 +1,15 @@
 console.log('lets make notes app');
+
+//shownotes() loads the notes fro the local storage and displays it
+
 shownotes();
+
 // whenever user adds a note, add it to local storage
 let addbtn = document.getElementById('addbtn');
 addbtn.addEventListener('click', function () {
 
     let textArea = document.getElementById('addtxt');
+    let titleArea = document.getElementById('addtitle');
     let notes = localStorage.getItem('notes');
     if (notes == null) {
         notesObj = [];
@@ -12,9 +17,10 @@ addbtn.addEventListener('click', function () {
     else {
         notesObj = JSON.parse(notes);
     }
-    notesObj.push(textArea.value);
+    notesObj.push([titleArea.value,textArea.value]);
     localStorage.setItem('notes', JSON.stringify(notesObj));
     textArea.value = "";
+    titleArea.value="";
     console.log(notesObj);
     shownotes();
 });
@@ -33,8 +39,8 @@ function shownotes() {
     notesObj.forEach(element => {
         html += `<div class="notecard mx-2 my-2" style="width: 18rem;">
          <div class="card-body">
-           <h5 class="card-title">Note ${i}</h5>
-           <p class="card-text">${element}</p>
+           <h5 class="card-title">${element[0]}</h5>
+           <p class="card-text">${element[1]}</p>
            <button id="${i}" onclick="deletenote(this.id)" class="btn btn-primary">Delete Note</button>
          </div>
        </div> `;
