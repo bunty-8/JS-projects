@@ -1,0 +1,11 @@
+{
+    "editor.mouseWheelZoom": true,
+    "[json]": {
+
+        "editor.quickSuggestions": {
+            "strings": true
+        },
+        "editor.suggest.insertMode": "replace"
+    },
+    "editor.wordWrap": "on"
+}
